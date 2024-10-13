@@ -1,0 +1,7 @@
+# Default ignored files
+.idea/
+.vscode
+cmake-build-debug/
+cmake-build-release/
+output/
+.clang-format
