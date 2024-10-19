@@ -81,7 +81,7 @@ void testMergeArray() {
   int len2 = sizeof(array2) / sizeof(array2[0]);
   // calloc 函数会做初始化操作
   int* sorted = (int*) calloc(len + len2, sizeof(int));
-  int outLen = -1;
+  int outLen = 0;
   mergeArray(array, len, array2, len2, &sorted, &outLen);
   printf("testMergeArray!\n");
   for (int i = 0; i < outLen; i++) {
@@ -304,5 +304,95 @@ void testIsAnagram() {
   bool result = isAnagram(s, t);
   printf("result: %d\n", result);
 }
+
+/**
+ * 两个字符串，最大的公共子串
+ */
+void findMaxSubString(char* str1, char* str2) {
+  int len1 = strlen(str1);
+  int len2 = strlen(str2);
+  
+  // 创建一个二维数据来存储子问题的解
+  int dp[len1 + 1][len2 + 1];
+  // 初始化二维数据
+  memset(dp, 0, sizeof(dp));
+
+  int maxLength = 0;
+  int endIndex = 0;
+
+  for (int i = 1; i <= len1; i++) {
+    for (int j = 1; j <= len2; j++) {
+      if (str1[i-1] == str2[j-1]) {
+        dp[i][j] = dp[i-1][j-1] + 1;
+        if (dp[i][j] > maxLength) {
+          maxLength = dp[i][j];
+          endIndex = i -1;
+        }
+      } else {
+        dp[i][j] = 0;
+      }
+    }
+  }
+
+  if (maxLength > 0) {
+    char* result = (char*)malloc(maxLength + 1);
+    strncpy(result, str1 + endIndex - maxLength + 1, maxLength);
+    result[maxLength] = '\0';
+    printf("Max Substring: %s\n", result);
+    free(result);
+  } else {
+    printf("没有公共子串\n");
+  }
+}
+
+/**
+ * 7. 测试两个字符串，最大的公共子串
+ */
+void testFindMaxSubString() {
+  char str1[] = "abcdefg";
+  char str2[] = "defghijk";
+  printf("testFindMaxSubString: \n");
+  printf("str1: %s\n", str1);
+  printf("str2: %s\n", str2);
+  findMaxSubString(str1, str2);
+}
+
+/**
+ * 数组最大区间和
+ */
+int maxSubArray(int* nums, int numsSize) {
+  if (nums == NULL || numsSize == 0) {
+    return 0;
+  }
+
+  int maxSum = nums[0];
+  int currentSum = nums[0];
+
+  for (int i = 1; i < numsSize; i++) {
+    currentSum = currentSum > 0 ? currentSum + nums[i] : nums[i];
+    if (currentSum > maxSum) {
+      maxSum = currentSum;
+    }
+  }
+
+  return maxSum;  
+}
+
+/**
+ * 8. 测试数组最大区间和
+ */
+void testMaxSubArray() {
+  int nums[] = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+  int numSize = sizeof(nums) / sizeof(nums[0]);
+  int maxSum = maxSubArray(nums, numSize);
+  printf("testMaxSubArray: \n");
+  printf("maxSum: %d\n", maxSum);
+}
+
+/**
+ * 翻转双向链表
+ */
+
+
 
 #endif//LEETCODE_ALGORITHM_H

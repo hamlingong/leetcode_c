@@ -13,5 +13,9 @@ int main() {
   testTwoSum();
   // 6. 测试字母异位词
   testIsAnagram();
+  // 7. 测试两个字符串，最大的公共子串
+  testFindMaxSubString();
+  // 8. 测试数组最大区间和
+  testMaxSubArray();
   return 0;
 }
