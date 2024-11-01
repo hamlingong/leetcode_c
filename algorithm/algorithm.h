@@ -393,6 +393,14 @@ void testMaxSubArray() {
  * 翻转双向链表
  */
 
-
+/**
+ * 指针测试
+ */
+void testPoint() {
+  char str[] = {'a', 'b', 'c', 'd'};
+  const char * str2 = "abcd";
+  printf("sizeof str: %lu, strlen str: %lu \n", sizeof(str), strlen(str));
+  printf("sizeof str2: %lu, strlen str2: %lu", sizeof(str2), strlen(str2));
+}
 
 #endif//LEETCODE_ALGORITHM_H

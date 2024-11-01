@@ -17,5 +17,7 @@ int main() {
   testFindMaxSubString();
   // 8. 测试数组最大区间和
   testMaxSubArray();
+  // 9. 指针测试
+  testPoint();
   return 0;
 }
